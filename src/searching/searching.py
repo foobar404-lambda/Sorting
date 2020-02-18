@@ -15,28 +15,25 @@ def binary_search(arr, target):
 
     low = 0
     high = len(arr) - 1
-    middle = high // 2
 
-    while high - low > 1:
+    while low <= high:
+        middle = low + (high - low) // 2
 
         if arr[middle] == target:
             return middle
 
         else:
             if arr[middle] > target:
-                high = middle
-                middle = math.ceil((high + low) / 2)
+                high = middle - 1
+            elif arr[middle] < target:
+                low = middle + 1
             else:
-                low = middle
-                middle = math.ceil((high + low) / 2)
+                return middle
 
-    if arr[middle] == target:
-        return middle
-    elif arr[middle - 1] == target:
-        return middle - 1
-    else:
-        return -1
+    return -1
 
+
+print(binary_search([2, 3, 52, 35, 3, 9], 9))
 
 # STRETCH: write a recursive implementation of Binary Search
 def binary_search_recursive(arr, target, low, high):
